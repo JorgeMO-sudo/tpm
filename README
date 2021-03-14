@@ -1,0 +1,3 @@
+Actualizaciones mediante TPM
+
+  - El proyecto pretende crear un modelo mediante el cual la actualiazación de sistemas informáticos se realice mediate el chip TPM y no mediante software como es habitual. De esta forma el cifrado y desfrizado de los certifidos pertinentes se realizarán haciendo uso de dicho dispositivo. Esto hará que el sistema sea más seguro de cara a direfentes ataques.
