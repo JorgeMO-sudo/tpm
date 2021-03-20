@@ -1,5 +1,5 @@
 /*
-* Javier Abellan, 20 Jun 2000
+* Jorge Márquez Ortega, 5 Mar 2021
 *
 * Funciones para la apertura de un socket servidor y la conexion con sus
 * clientes
@@ -97,8 +97,8 @@ int Acepta_Conexion_Cliente (int Descriptor)
 /*
 * Abre un socket servidor de tipo AF_INET. Devuelve el descriptor
 *	del socket o -1 si hay probleamas
-* Se pasa como parametro el nombre del servicio. Debe estar dado
-* de alta en el fichero /etc/services
+* Se pasa como parametro el nombre del servicio. Si no está dado
+* de alta en el fichero /etc/services se actualiza dicho fichero
 */
 int Abre_Socket_Inet (char *Servicio)
 {
@@ -119,8 +119,21 @@ int Abre_Socket_Inet (char *Servicio)
 	* Se obtiene el servicio del fichero /etc/services
 	*/
 	Puerto = getservbyname (Servicio, "tcp");
-	if (Puerto == NULL)
+	if (Puerto == NULL){
+		
+		char command[50]; ///////////////// crear comando para system
+   		strcpy(command, "su -c \"echo '");
+		strcat(command, Servicio);
+		strcat(command, " 		15557/tcp' >> /etc/services \"");
+		
+
+		//system ("su -c \"echo 'cpp_c 		15557/tcp' >> /etc/services \"");
+		system(command);
+		Puerto = getservbyname (Servicio, "tcp");
+		if (Puerto == NULL){
 		return -1;
+		}
+	}
 
 	/*
 	* Se rellenan los campos de la estructura Direccion, necesaria

@@ -1,8 +1,5 @@
 /*
-* Javier Abellan, 20 Jun 2000
-*
-* Programa Servidor de socket INET, como ejemplo de utilizacion de las
-* funciones de sockets.
+* Jorge Márquez Ortega, 5 Mar 2021
 */
 #include <Socket_Servidor.h>
 #include <Socket.h>
@@ -20,10 +17,10 @@ main ()
 	char Cadena[100];
 
 	/*
-	* Se abre el socket servidor, con el servicio "cpp_java" dado de
-	* alta en /etc/services.
+	* Se abre el socket servidor, con el servicio "cpp_c" si no está dado de
+	* alta en /etc/services se actualiza el fichero con el puerto 15557 
 	*/
-	Socket_Servidor = Abre_Socket_Inet ("cpp_java");
+	Socket_Servidor = Abre_Socket_Inet ("cpp_c");
 	if (Socket_Servidor == -1)
 	{
 		printf ("No se puede abrir socket servidor\n");
