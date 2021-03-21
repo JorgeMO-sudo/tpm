@@ -100,7 +100,7 @@ int Acepta_Conexion_Cliente (int Descriptor)
 * Se pasa como parametro el nombre del servicio. Si no está dado
 * de alta en el fichero /etc/services se actualiza dicho fichero
 */
-int Abre_Socket_Inet (char *Servicio)
+int Abre_Socket_Inet (char* Servicio,char* puerto)
 {
 	struct sockaddr_in Direccion;
 	struct sockaddr Cliente;
@@ -124,7 +124,9 @@ int Abre_Socket_Inet (char *Servicio)
 		char command[50]; ///////////////// crear comando para system
    		strcpy(command, "su -c \"echo '");
 		strcat(command, Servicio);
-		strcat(command, " 		15557/tcp' >> /etc/services \"");
+		strcat(command, " 		");
+		strcat(command, puerto);
+		strcat(command, "/tcp' >> /etc/services \"");
 		
 
 		//system ("su -c \"echo 'cpp_c 		15557/tcp' >> /etc/services \"");

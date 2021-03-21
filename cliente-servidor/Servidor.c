@@ -7,8 +7,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-main ()
+main (int argc,char** argv)
 {
+	if(argc < 3){
+		printf("Error parametros insuficientes: \n");
+		printf("Usage: Servidor servicio puerto[1025-65536] \n");
+		exit(-1);
+	}
+
+	char* servicio = argv[1];
+	char* puerto = argv[2];
+	if((atoi(puerto) < 1025)||(atoi(puerto) > 65536)){
+		printf("Error puerto fuera de rango: \n");
+		printf("Usage: puerto[1025-65536] \n");
+		exit(-1);
+	}
+
+
 	/*
 	* Descriptores de socket servidor y de socket con el cliente
 	*/
@@ -20,7 +35,7 @@ main ()
 	* Se abre el socket servidor, con el servicio "cpp_c" si no está dado de
 	* alta en /etc/services se actualiza el fichero con el puerto 15557 
 	*/
-	Socket_Servidor = Abre_Socket_Inet ("cpp_c");
+	Socket_Servidor = Abre_Socket_Inet (servicio,puerto);
 	if (Socket_Servidor == -1)
 	{
 		printf ("No se puede abrir socket servidor\n");
