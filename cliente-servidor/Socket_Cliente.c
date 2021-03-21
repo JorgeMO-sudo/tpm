@@ -43,6 +43,7 @@ int Abre_Conexion_Unix (char *Servicio)
 */
 int Abre_Conexion_Inet (
 	char *Host_Servidor, 
+	char *ip,
 	char *Servicio)
 {
 	struct sockaddr_in Direccion;
@@ -55,8 +56,20 @@ int Abre_Conexion_Inet (
 		return -1;
 
 	Host = gethostbyname (Host_Servidor);
-	if (Host == NULL)
-		return -1;
+	if (Host == NULL){
+		char command[50]; 
+   		strcpy(command, "su -c \"echo '");
+		strcat(command, ip);
+		strcat(command, "	");
+		strcat(command, Host_Servidor);
+		strcat(command, "' >> /etc/hosts \"");
+		
+		system(command);
+		Host = gethostbyname (Host_Servidor);
+		if (Host == NULL){
+			return -1;
+		}
+	}
 
 	Direccion.sin_family = AF_INET;
 	Direccion.sin_addr.s_addr = ((struct in_addr *)(Host->h_addr))->s_addr;

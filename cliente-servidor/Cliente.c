@@ -4,8 +4,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-main ()
+main (int argc,char** argv)
 {
+	if(argc < 4){
+		printf("Error parametros insuficientes \n");
+		printf("Usage: Cliente host ip servicio\n");
+	}
+
+	char* host_name = argv[1];
+	char* ip = argv[2];
+	char* servicio = argv[3];
 	/*
 	* Descriptor del socket y buffer para datos
 	*/
@@ -15,7 +23,7 @@ main ()
 	/*
 	* Se abre la conexion con el servidor, pasando el nombre del ordenador
 	*/
-	Socket_Con_Servidor = Abre_Conexion_Inet ("jj-ThinkPad-X220", "cpp_c");
+	Socket_Con_Servidor = Abre_Conexion_Inet (host_name,ip,servicio);
 	if (Socket_Con_Servidor == 1)
 	{
 		printf ("No puedo establecer conexion con el servidor\n");

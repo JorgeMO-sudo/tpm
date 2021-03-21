@@ -2,6 +2,6 @@
 #define _SOCKET_CLIENTE_H
 
 int Abre_Conexion_Unix (char *Servicio);
-int Abre_Conexion_Inet (char *Host_Servidor, char *Servicio);
+int Abre_Conexion_Inet (char *Host_Servidor,char* ip, char *Servicio);
 
 #endif

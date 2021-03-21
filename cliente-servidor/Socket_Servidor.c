@@ -121,15 +121,13 @@ int Abre_Socket_Inet (char* Servicio,char* puerto)
 	Puerto = getservbyname (Servicio, "tcp");
 	if (Puerto == NULL){
 		
-		char command[50]; ///////////////// crear comando para system
+		char command[50]; 
    		strcpy(command, "su -c \"echo '");
 		strcat(command, Servicio);
 		strcat(command, " 		");
 		strcat(command, puerto);
 		strcat(command, "/tcp' >> /etc/services \"");
 		
-
-		//system ("su -c \"echo 'cpp_c 		15557/tcp' >> /etc/services \"");
 		system(command);
 		Puerto = getservbyname (Servicio, "tcp");
 		if (Puerto == NULL){
