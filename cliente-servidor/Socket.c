@@ -1,5 +1,5 @@
 /*
-* Javier Abellan, 20 Jun 2000
+* Jorge Márquez Ortega, 5 Mar 2021
 *
 * Funciones de lectura y escritura en sockets
 */
