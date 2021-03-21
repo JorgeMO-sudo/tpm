@@ -60,7 +60,7 @@ int Abre_Conexion_Inet (
 		char command[50]; 
    		strcpy(command, "su -c \"echo '");
 		strcat(command, ip);
-		strcat(command, "	");
+		strcat(command, "		");
 		strcat(command, Host_Servidor);
 		strcat(command, "' >> /etc/hosts \"");
 		
